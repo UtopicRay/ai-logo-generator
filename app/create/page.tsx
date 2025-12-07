@@ -2,7 +2,9 @@
 import ActionCard from "@/components/ActionCard";
 import ColorSelectionCard from "@/components/ColorSelectionCard";
 import DescriptionCard from "@/components/DescriptionCard";
+import IdeaSelectionCard from "@/components/IdeaSelectionCard";
 import LogoSelectionCard from "@/components/LogoSelectionCard";
+import SuscribePlanCard from "@/components/SuscribePlanCard";
 import { Input } from "@/components/ui/input";
 import useFormData from "@/hooks/useFormData";
 import { useSearchParams } from "next/navigation";
@@ -12,7 +14,7 @@ function CreatePage() {
   const params = useSearchParams();
   const title = params.get("title");
   const [step, setStep] = useState(1);
-  const { formData, handleForm } = useFormData(title ? title : "");
+  const { formData, handleForm } = useFormData();
   const [titleLogo, setTitle] = useState<string>(title ? title : "");
 
   function handleNext(atribute: string, value: any) {
@@ -23,10 +25,10 @@ function CreatePage() {
   function handleBack(atribute: string) {
     handleForm(atribute, null);
     setStep(step - 1);
-    console.log(formData)
+    console.log(formData);
   }
   return (
-    <section className="flex mt-32 justify-center items-center w-full">
+    <section className="flex mt-56 justify-center items-center w-full">
       {step === 1 ? (
         <ActionCard
           header="Logo Title"
@@ -58,6 +60,20 @@ function CreatePage() {
           actionBack={() => handleBack("logo")}
           actionNext={(value) => handleNext("logo", value)}
         />
+      ) : step === 5 ? (
+        <IdeaSelectionCard
+          actionBack={() => handleBack("idea")}
+          actionNext={(value) => handleNext("idea", value)}
+        />
+      ) : step === 6 ? (
+        <ActionCard
+          header="Suscribe Plan"
+          description="Select the best plan for you"
+          backClick={()=>handleBack("idea")}
+          step={6}
+        >
+          <SuscribePlanCard formData={formData} />
+        </ActionCard>
       ) : null}
     </section>
   );

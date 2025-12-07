@@ -8,8 +8,8 @@ interface ActionCardProps {
   description: string;
   step: number;
   children?: React.ReactNode;
-  continueClick: () => void;
-  backClick: () => void;
+  continueClick?: () => void;
+  backClick?: () => void;
 }
 function ActionCard({
   header,

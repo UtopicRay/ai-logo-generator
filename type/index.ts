@@ -13,3 +13,18 @@ export interface SelectionCardProps {
   actionNext: (value: any) => void;
   actionBack: () => void;
 }
+export interface PricingPlan {
+  id: string;
+  name: string;
+  price: string;
+  features: string[];
+  buttonText: string;
+}
+
+export interface AiData {
+  title?: string;
+  description?: string;
+  color?: ColorOption;
+  logo?: LogoStyle;
+  idea?: string;
+}

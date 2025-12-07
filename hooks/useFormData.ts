@@ -1,18 +1,13 @@
-import { ColorOption, LogoStyle } from "@/type";
+import { AiData } from "@/type";
 import { useState } from "react";
 
-interface FormData {
-  title?: string;
-  description?: string;
-  color?: ColorOption;
-  logo?: LogoStyle;
-}
 export default function useFormData(title?: string) {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<AiData>({
     title: title || "",
     description: "",
     color: undefined,
     logo: undefined,
+    idea: undefined,
   });
 
   function handleForm(atribute: string, value: any) {
